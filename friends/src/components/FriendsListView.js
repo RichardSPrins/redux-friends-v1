@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
 import FriendsList from './FriendsList';
+import { getFriends } from '../actions';
+import { connect } from 'react-redux'
+
 
 
 class FriendsListView extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { 
-      
-     };
-  }
   render() {
     return (
       <FriendsList />
@@ -16,4 +13,8 @@ class FriendsListView extends Component {
   }
 }
 
-export default FriendsListView;
+const mapStateToProps = state => ({
+  isFetching: state.isFetching,
+  friends: state.friends,
+})
+export default connect(mapStateToProps, {getFriends})(FriendsListView);
